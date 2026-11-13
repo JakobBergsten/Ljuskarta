@@ -4,7 +4,11 @@ Familjens minneskarta med brinnande ljus, detaljerad OpenStreetMap-karta och st�
 
 Webbappen körs statiskt på GitHub Pages. Firebase Authentication kontrollerar familjekoden och Realtime Database lagrar och synkroniserar ljusen. Inga Cloud Functions, betalplaner eller serverprocesser behövs.
 
-## Firebase Spark
+## Nuvarande konfiguration
+
+Appen är ansluten till Firebase-projektet `ljusspar`, med Realtime Database i Belgien på Spark-planen. Den publika webbkonfigurationen finns i `src/firebase-config.ts`. Familjens användare är skapad och databasreglerna tillåter bara den användarens UID. Familjekoden finns bara i Firebase Authentication och ska aldrig skrivas in i källkoden.
+
+## Firebase Spark – för en egen kopia
 
 1. Använd ett separat Firebase-projekt på Spark-planen utan fakturering.
 2. Registrera en webbapp och kopiera dess publika Firebase-konfiguration till `.env.local` enligt `.env.example`.
@@ -18,7 +22,7 @@ Firebase-konfigurationen och användarens UID är publik metadata. Familjekoden,
 
 ## GitHub Pages
 
-Lägg variablerna från `.env.example` som GitHub repository **Actions variables** under Settings → Secrets and variables → Actions → Variables. Välj Settings → Pages → Source → GitHub Actions. Workflowen bygger, testar och publicerar ändringar på `main`.
+Välj Settings → Pages → Source → GitHub Actions. Workflowen bygger, testar och publicerar ändringar på `main`. Den använder den publika konfigurationen i `src/firebase-config.ts`; inga extra byggvariabler behövs för den här installationen. Vid en egen installation kan variablerna från `.env.example` läggas som GitHub repository **Actions variables** under Settings → Secrets and variables → Actions → Variables för att ersätta standardkonfigurationen.
 
 Den nya adressen blir `https://jakobbergsten.github.io/Ljuskarta/` när Pages är aktiverat och publiceringen lyckats. Alla interna filer använder relativa sökvägar så att även projektadressen fungerar.
 
