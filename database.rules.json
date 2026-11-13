@@ -5,8 +5,8 @@
     "families": {
       "$uid": {
         "candles": {
-          ".read": "auth != null && auth.uid === $uid",
-          ".write": "auth != null && auth.uid === $uid",
+          ".read": "auth != null && auth.uid === $uid && $uid === '6nfHdpEkfgSKFGlVbEdBAyJ8jvq1'",
+          ".write": "auth != null && auth.uid === $uid && $uid === '6nfHdpEkfgSKFGlVbEdBAyJ8jvq1'",
           "$id": {
             "person": {
               ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 100"
@@ -51,3 +51,4 @@
     }
   }
 }
+

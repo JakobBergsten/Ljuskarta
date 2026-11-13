@@ -5,6 +5,7 @@ export const firebaseConfig={
   databaseURL:'https://ljusspar-default-rtdb.europe-west1.firebasedatabase.app',
   projectId:'ljusspar',
   familyEmail:'familj@ljusspar.invalid',
-  familyUid:'',
+  familyUid:'6nfHdpEkfgSKFGlVbEdBAyJ8jvq1',
 };
+
 
