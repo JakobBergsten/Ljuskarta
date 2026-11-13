@@ -1,0 +1,53 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "families": {
+      "$uid": {
+        "candles": {
+          ".read": "auth != null && auth.uid === $uid",
+          ".write": "auth != null && auth.uid === $uid",
+          "$id": {
+            "person": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 100"
+            },
+            "place": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 160"
+            },
+            "authorName": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 80"
+            },
+            "message": {
+              ".validate": "newData.isString() && newData.val().length <= 2000"
+            },
+            "date": {
+              ".validate": "newData.isString() && newData.val().matches(/^\\d{4}-\\d{2}-\\d{2}$/)"
+            },
+            "latitude": {
+              ".validate": "newData.isNumber() && newData.val() >= -90 && newData.val() <= 90"
+            },
+            "longitude": {
+              ".validate": "newData.isNumber() && newData.val() >= -180 && newData.val() <= 180"
+            },
+            "id": {
+              ".validate": "newData.isString() && newData.val() === $id"
+            },
+            "authorId": {
+              ".validate": "newData.isString() && ((!data.exists() && newData.val() === auth.uid) || (data.exists() && newData.val() === data.val()))"
+            },
+            "createdAt": {
+              ".validate": "newData.isString() && newData.val().matches(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$/) && (!data.exists() || newData.val() === data.val())"
+            },
+            "updatedAt": {
+              ".validate": "newData.isString() && newData.val().matches(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$/)"
+            },
+            "$other": {
+              ".validate": false
+            },
+            ".validate": "newData.hasChildren(['id','person','place','date','authorName','latitude','longitude','authorId','createdAt','updatedAt'])"
+          }
+        }
+      }
+    }
+  }
+}
